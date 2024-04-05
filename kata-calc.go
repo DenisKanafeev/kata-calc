@@ -19,6 +19,10 @@ func main() {
 	_ = scanner.Scan()
 	input = scanner.Text()
 
+	if len(strings.Fields(input)) > 3 {
+		panic("only two numbers and one operation")
+	}
+
 	x = (strings.Fields(input)[0])
 	op = (strings.Fields(input)[1])
 	y = (strings.Fields(input)[2])
@@ -55,6 +59,8 @@ func main() {
 		result = xint * yint
 	case op == "/":
 		result = xint / yint
+	default:
+		panic("only +, -, * or / allowed")
 	}
 
 	if xrom && result < 0 {
@@ -66,6 +72,7 @@ func main() {
 	} else if xrom == yrom && !xrom {
 		fmt.Println(x, op, y, "=", result)
 	}
+
 }
 
 func inttorom(num int) string {
