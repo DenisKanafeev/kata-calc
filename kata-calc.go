@@ -14,65 +14,67 @@ func main() {
 	var xrom, yrom bool
 	var xint, yint, result int
 
-	fmt.Println("Enter number operation number (split by space)")
-	scanner := bufio.NewScanner(os.Stdin)
-	_ = scanner.Scan()
-	input = scanner.Text()
+	for input != "stop" {
+		xrom, yrom = false, false
+		fmt.Println("Enter number operation number. To stop enter stop.")
+		scanner := bufio.NewScanner(os.Stdin)
+		_ = scanner.Scan()
+		input = scanner.Text()
 
-	if len(strings.Fields(input)) > 3 {
-		panic("only two numbers and one operation")
+		if len(strings.Fields(input)) > 3 {
+			panic("only two numbers and one operation")
+		}
+
+		x = (strings.Fields(input)[0])
+		op = (strings.Fields(input)[1])
+		y = (strings.Fields(input)[2])
+
+		if x[0] < 48 || x[0] > 57 {
+			xrom = true
+			xint = romtoint(x)
+		} else {
+			xint, _ = strconv.Atoi(x)
+
+		}
+
+		if y[0] < 48 || y[0] > 57 {
+			yrom = true
+			yint = romtoint(y)
+		} else {
+			yint, _ = strconv.Atoi(y)
+		}
+
+		if xint < 1 || xint > 10 || yint < 1 || yint > 10 {
+			panic("only numbers from 0 to 10")
+		}
+
+		if xrom != yrom {
+			panic("numbers must be of a same system")
+		}
+
+		switch {
+		case op == "+":
+			result = xint + yint
+		case op == "-":
+			result = xint - yint
+		case op == "*":
+			result = xint * yint
+		case op == "/":
+			result = xint / yint
+		default:
+			panic("only +, -, * or / allowed")
+		}
+
+		if xrom && result < 0 {
+			panic("roman result < 0")
+		}
+
+		if xrom == yrom && xrom {
+			fmt.Println(x, op, y, "=", inttorom(result))
+		} else if xrom == yrom && !xrom {
+			fmt.Println(x, op, y, "=", result)
+		}
 	}
-
-	x = (strings.Fields(input)[0])
-	op = (strings.Fields(input)[1])
-	y = (strings.Fields(input)[2])
-
-	if x[0] < 48 || x[0] > 57 {
-		xrom = true
-		xint = romtoint(x)
-	} else {
-		xint, _ = strconv.Atoi(x)
-
-	}
-
-	if y[0] < 48 || y[0] > 57 {
-		yrom = true
-		yint = romtoint(y)
-	} else {
-		yint, _ = strconv.Atoi(y)
-	}
-
-	if xint < 1 || xint > 10 || yint < 1 || yint > 10 {
-		panic("only numbers from 0 to 10")
-	}
-
-	if xrom != yrom {
-		panic("numbers must be of a same system")
-	}
-
-	switch {
-	case op == "+":
-		result = xint + yint
-	case op == "-":
-		result = xint - yint
-	case op == "*":
-		result = xint * yint
-	case op == "/":
-		result = xint / yint
-	default:
-		panic("only +, -, * or / allowed")
-	}
-
-	if xrom && result < 0 {
-		panic("roman result < 0")
-	}
-
-	if xrom == yrom && xrom {
-		fmt.Println(x, op, y, "=", inttorom(result))
-	} else if xrom == yrom && !xrom {
-		fmt.Println(x, op, y, "=", result)
-	}
-
 }
 
 func inttorom(num int) string {
