@@ -1,3 +1,5 @@
+//This is a simple calculator for one-digit numbers. It understands romans and integers, but not at the same time.
+
 package main
 
 import (
@@ -14,12 +16,19 @@ func main() {
 	var xrom, yrom bool
 	var xint, yint, result int
 
-	for input != "stop" {
+	fmt.Println("This is a simple calculator for one-digit numbers. It understands romans and integers, but not at the same time.")
+
+	for {
 		xrom, yrom = false, false
 		fmt.Println("Enter number operation number. To stop enter stop.")
 		scanner := bufio.NewScanner(os.Stdin)
 		_ = scanner.Scan()
 		input = scanner.Text()
+
+		if input == "stop" {
+			fmt.Println("OK, bye then!")
+			break
+		}
 
 		if len(strings.Fields(input)) > 3 {
 			panic("only two numbers and one operation")
@@ -129,9 +138,9 @@ func romless10(num int) string {
 
 func romtoint(rom string) int {
 	num := 0
-	if rom == "IV" || rom == "iv" {
+	if rom == "IV" || rom == "iv" || rom == "iV" || rom == "Iv" {
 		num = 4
-	} else if rom == "IX" || rom == "ix" {
+	} else if rom == "IX" || rom == "ix" || rom == "iX" || rom == "Ix" {
 		num = 9
 	} else {
 		for i := 0; i <= len(rom)-1; i++ {
