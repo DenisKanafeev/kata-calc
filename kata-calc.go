@@ -1,4 +1,5 @@
-//This is a simple calculator for one-digit numbers. It understands romans and integers, but not at the same time.
+//This is a simple calculator for one-digit numbers.
+//It understands romans and integers, but not at the same time.
 
 package main
 
@@ -16,7 +17,8 @@ func main() {
 	var xrom, yrom bool
 	var xint, yint, result int
 
-	fmt.Println("This is a simple calculator for one-digit numbers. It understands romans and integers, but not at the same time.")
+	fmt.Println("This is a simple calculator for one-digit numbers.")
+	fmt.Println("It understands romans and integers, but not at the same time.")
 
 	for {
 		xrom, yrom = false, false
@@ -30,20 +32,46 @@ func main() {
 			break
 		}
 
-		if len(strings.Fields(input)) > 3 {
-			panic("only two numbers and one operation")
+		input = strings.ReplaceAll(input, " ", "")
+		fmt.Println(input)
+
+		count := 0
+		for i := 0; i <= len(input)-1; i++ {
+			if input[i] == 42 || input[i] == 43 || input[i] == 45 || input[i] == 47 {
+				count++
+			}
 		}
 
-		x = (strings.Fields(input)[0])
-		op = (strings.Fields(input)[1])
-		y = (strings.Fields(input)[2])
+		if count != 1 {
+			panic("Invalid operation")
+		}
+
+		switch {
+		case strings.Contains(input, "+"):
+			op = "+"
+		case strings.Contains(input, "-"):
+			op = "-"
+		case strings.Contains(input, "*"):
+			op = "*"
+		case strings.Contains(input, "/"):
+			op = "/"
+		}
+
+		x = strings.Split(input, op)[0]
+		y = strings.Split(input, op)[1]
+
+		if x == "" {
+			panic("no first number provided")
+		}
+		if y == "" {
+			panic("no second number provided")
+		}
 
 		if x[0] < 48 || x[0] > 57 {
 			xrom = true
 			xint = romtoint(x)
 		} else {
 			xint, _ = strconv.Atoi(x)
-
 		}
 
 		if y[0] < 48 || y[0] > 57 {
@@ -54,7 +82,7 @@ func main() {
 		}
 
 		if xint < 1 || xint > 10 || yint < 1 || yint > 10 {
-			panic("only numbers from 0 to 10")
+			panic("only numbers from 0 to 10 allowed")
 		}
 
 		if xrom != yrom {
