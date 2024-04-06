@@ -11,21 +11,22 @@ import (
 	"strings"
 )
 
+var input, x, y, op string
+var xrom, yrom bool
+var xint, yint, result int
+
+const welcome = "This is a simple calculator for one-digit numbers. It understands romans and integers, but not at the same time."
+const bye = "OK, bye then!"
+const invop = "invalid operation"
+const nosnum = "no second number provided"
+const nofnum = "no first number provided"
+const numrangeerr = "only numbers from 0 to 10 allowed"
+const numsyserr = "numbers must be of a same system"
+const romlessthanzero = "roman result < 0"
+
 func main() {
 
-	var input, x, y, op string
-	var xrom, yrom bool
-	var xint, yint, result int
-	const welcome = "This is a simple calculator for one-digit numbers. It understands romans and integers, but not at the same time."
-	const bye = "OK, bye then!"
-	const invop = "invalid operation"
-	const nosnum = "no second number provided"
-	const nofnum = "no first number provided"
-	const numrangeerr = "only numbers from 0 to 10 allowed"
-	const numsyserr = "numbers must be of a same system"
-	const romlessthanzero = "roman result < 0"
-
-	fmt.Println(welcome)
+	fmt.Println(welcome) //показываем юзеру привественное сообщение с описанием функционала
 
 	for {
 		xrom, yrom = false, false                                         //в начале цикла сбрасываем значения xrom и yrom на false
