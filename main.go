@@ -23,7 +23,7 @@ const (
 	invop           = "invalid operation"
 	nosnum          = "no second number provided"
 	nofnum          = "no first number provided"
-	numrangeerr     = "only numbers from 0 to 10 allowed"
+	numrangeerr     = "only numbers from 1 to 10 allowed"
 	numsyserr       = "numbers must be of a same system"
 	romlessthanzero = "roman result < 0"
 )
