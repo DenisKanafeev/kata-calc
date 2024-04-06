@@ -1,3 +1,3 @@
-module example.com/kata-calc
+module kata-calc
 
 go 1.22.2
