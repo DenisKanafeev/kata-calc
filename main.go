@@ -11,18 +11,22 @@ import (
 	"strings"
 )
 
-var input, x, y, op string
-var xrom, yrom bool
-var xint, yint, result int
+var (
+	input, x, y, op    string
+	xrom, yrom         bool
+	xint, yint, result int
+)
 
-const welcome = "This is a simple calculator for one-digit numbers. It understands romans and integers, but not at the same time."
-const bye = "OK, bye then!"
-const invop = "invalid operation"
-const nosnum = "no second number provided"
-const nofnum = "no first number provided"
-const numrangeerr = "only numbers from 0 to 10 allowed"
-const numsyserr = "numbers must be of a same system"
-const romlessthanzero = "roman result < 0"
+const (
+	welcome         = "This is a simple calculator for one-digit numbers. It understands romans and integers, but not at the same time."
+	bye             = "OK, bye then!"
+	invop           = "invalid operation"
+	nosnum          = "no second number provided"
+	nofnum          = "no first number provided"
+	numrangeerr     = "only numbers from 0 to 10 allowed"
+	numsyserr       = "numbers must be of a same system"
+	romlessthanzero = "roman result < 0"
+)
 
 func main() {
 
