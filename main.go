@@ -18,7 +18,7 @@ var (
 )
 
 const (
-	welcome         = "This is a simple calculator for one-digit numbers. It understands romans and integers, but not at the same time."
+	welcome         = "This is a simple calculator for one-digit numbers. It understands romans and integers, but not both at the same time."
 	bye             = "OK, bye then!"
 	invop           = "invalid operation"
 	nosnum          = "no second number provided"
@@ -116,9 +116,9 @@ func main() {
 		}
 
 		if xrom { //если юзер вводил римские цифры
-			fmt.Println(x, op, y, "=", inttorom(result)) //выводим результат в римской системе с помощью обратного переводчика
+			fmt.Println(inttorom(result)) //выводим результат в римской системе с помощью обратного переводчика
 		} else {
-			fmt.Println(x, op, y, "=", result) //если же нет, то просто выводим результат
+			fmt.Println(result) //если же нет, то просто выводим результат
 		}
 	}
 }
