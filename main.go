@@ -1,5 +1,5 @@
 //This is a simple calculator for one-digit numbers.
-//It understands romans and integers, but not at the same time.
+//It understands romans and integers, but not both at the same time.
 
 package main
 
